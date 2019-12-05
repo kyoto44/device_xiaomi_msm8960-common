@@ -166,6 +166,9 @@ BOARD_ROOT_EXTRA_FOLDERS           := firmware persist
 # Power
 TARGET_USES_NON_LEGACY_POWERHAL := true
 
+# D2TW
+TARGET_TAP_TO_WAKE_NODE := "/proc/touchscreen/double_tap_enable"
+
 # QCOM enhanced A/V
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
 
