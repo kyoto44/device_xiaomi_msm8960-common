@@ -107,6 +107,8 @@ PRODUCT_PROPERTY_OVERRIDES += \
 PRODUCT_PROPERTY_OVERRIDES += \
     camera2.portability.force_api=1
 
-# Maintainer
+# Surfaceflinger
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.mk.maintainer=guaiyihu
+ro.surface_flinger.max_frame_buffer_acquired_buffers=3 \
+ro.surface_flinger.force_hwc_copy_for_virtual_displays=true \
+ro.surface_flinger.max_virtual_display_dimension=2048
