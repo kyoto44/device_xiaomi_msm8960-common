@@ -145,7 +145,7 @@ BOARD_KERNEL_IMAGE_NAME              := zImage
 BOARD_KERNEL_PAGESIZE                := 2048
 BOARD_RAMDISK_OFFSET                 := 0x02000000
 BOARD_MKBOOTIMG_ARGS                 := --ramdisk_offset 0x02000000
-BOARD_KERNEL_CMDLINE                 := console=null androidboot.hardware=qcom ehci-hcd.park=3 maxcpus=2 androidboot.bootdevice=msm_sdcc.1 androidboot.selinux=permissive
+BOARD_KERNEL_CMDLINE                 := console=null androidboot.hardware=qcom ehci-hcd.park=3 maxcpus=2 androidboot.bootdevice=msm_sdcc.1 loop.max_part=7 androidboot.selinux=permissive
 TARGET_KERNEL_ARCH                   := arm
 TARGET_KERNEL_SOURCE                 := kernel/xiaomi/aries
 
@@ -161,7 +161,12 @@ BOARD_USERDATAIMAGE_PARTITION_SIZE := 536870912
 BOARD_PERSISTIMAGE_PARTITION_SIZE  := 8388608
 BOARD_CACHEIMAGE_PARTITION_SIZE    := 402653184
 BOARD_FLASH_BLOCK_SIZE             := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
-BOARD_ROOT_EXTRA_FOLDERS           := firmware persist
+
+BOARD_ROOT_EXTRA_SYMLINKS := \
+    /mnt/vendor/persist:/persist \
+    /vendor/firmware_mnt:/firmware
+
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
 
 # Power
 TARGET_USES_NON_LEGACY_POWERHAL := true
@@ -194,6 +199,7 @@ VENDOR_SECURITY_PATCH := 2016-01-01
 
 # Sepolicy
 BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy
+SELINUX_IGNORE_NEVERALLOWS := true
 
 # Use mke2fs to create ext4 images
 TARGET_USES_MKE2FS := true
@@ -214,5 +220,8 @@ WIFI_DRIVER_FW_PATH_AP           := "ap"
 WIFI_DRIVER_FW_PATH_STA          := "sta"
 WIFI_HIDL_FEATURE_DISABLE_AP_MAC_RANDOMIZATION := true
 WPA_SUPPLICANT_VERSION           := VER_0_8_X
+
+# APEX
+DEXPREOPT_GENERATE_APEX_IMAGE := true
 
 -include vendor/xiaomi/msm8960-common/BoardConfigVendor.mk
