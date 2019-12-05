@@ -35,10 +35,6 @@ on init
 
     export EXTERNAL_STORAGE /sdcard
 
-    # Support legacy paths
-    symlink /sdcard /mnt/sdcard
-    symlink /sdcard /storage/sdcard0
-
 on fs
     mount_all /vendor/etc/fstab.qcom --early
     restorecon_recursive /persist
@@ -71,6 +67,11 @@ on boot
    exec /system/bin/init.atmel.fw_update.sh
 
 on post-fs-data
+
+    # Clear existing log and start the service
+    rm /cache/boot_log.txt
+    start logger
+
    mkdir /data/tombstones 0771 system system
    mkdir /tombstones/modem 0771 system system
    mkdir /tombstones/lpass 0771 system system
@@ -78,8 +79,13 @@ on post-fs-data
    mkdir /tombstones/dsps 0771 system system
    mkdir /tombstones/mdm 0771 system system
    mkdir /tombstones/mdm2 0771 system system
+   
 
 on property:dev.bootcomplete=1
+
+    # Stop the logger service
+    stop logger
+
     setprop sys.io.scheduler "bfq"
 
 on property:persist.sys.display_prefer=0
@@ -99,3 +105,10 @@ on property:persist.sys.display_ce=10
 
 on property:persist.sys.display_ce=11
     write /sys/devices/virtual/graphics/fb0/msm_fb_dispparam 16
+
+service logger /system/bin/logcat -b all -D -f /cache/boot_log.txt
+    class main
+    user root
+    group root system
+    disabled
+    oneshot

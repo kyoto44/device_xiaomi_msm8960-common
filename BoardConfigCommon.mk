@@ -92,12 +92,10 @@ TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY := camera_parameters_xiaomi_msm8960
 # Dexpreopt
 ifeq ($(HOST_OS),linux)
   ifneq ($(TARGET_BUILD_VARIANT),eng)
-    ifeq ($(WITH_DEXPREOPT),)
-      WITH_DEXPREOPT := true
-      WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
-    endif
+    WITH_DEXPREOPT ?= true
   endif
 endif
+WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY ?= true
 
 # Display
 BOARD_USES_LEGACY_MMAP          := true
@@ -166,7 +164,7 @@ BOARD_FLASH_BLOCK_SIZE             := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
 BOARD_ROOT_EXTRA_FOLDERS           := firmware persist
 
 # Power
-TARGET_USES_INTERACTION_BOOST := true
+TARGET_USES_NON_LEGACY_POWERHAL := true
 
 # QCOM enhanced A/V
 TARGET_ENABLE_QC_AV_ENHANCEMENTS := true
