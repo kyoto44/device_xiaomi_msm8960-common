@@ -1,3 +1,8 @@
+# Firmware directory Path
+# Below macro will be read by uevent and path will
+# be added to search path for firmware loading
+firmware_directories /vendor/firmware_mnt/image/
+
 /dev/uinput               0660   system     bluetooth
 /dev/genlock              0666   system     system
 /dev/kgsl                 0666   system     system
@@ -279,7 +284,3 @@
 /sys/devices/system/cpu/cpu*    cpufreq/scaling_min_freq    0664    system    system
 /sys/devices/system/cpu/nrcpus                              0664    system    system
 
-# Firmware directory Path
-# Below macro will be read by uevent and path will
-# be added to search path for firmware loading
-firmware_directories /vendor/firmware_mnt/image/
