@@ -104,6 +104,7 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl \
     camera.device@1.0-impl \
     camera.msm8960 \
+    libmmcamera_interface2 \
     Snap
 
 PRODUCT_COPY_FILES += \
