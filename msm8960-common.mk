@@ -84,7 +84,7 @@ PRODUCT_PACKAGES += \
     android.hardware.audio.effect@5.0 \
     android.hardware.audio.effect@5.0-impl \
     android.hardware.soundtrigger@2.1-impl \
-    android.hardware.soundtrigger@2.1-service
+    android.hardware.soundtrigger@2.1-service \
     audio_policy.msm8960 \
     audio.primary.msm8960 \
     audio.a2dp.default \
