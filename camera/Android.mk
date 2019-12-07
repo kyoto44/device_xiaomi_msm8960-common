@@ -98,6 +98,11 @@ ifeq ($(USE_DEVICE_SPECIFIC_CAMERA),true)
       # Uncomment below line to enable smooth zoom
       #LOCAL_CFLAGS+= -DCAMERA_SMOOTH_ZOOM
 
+      ifeq ($(V4L2_BASED_LIBCAM),true)
+        LOCAL_C_INCLUDES+= $(call project-path-for,qcom-media)/mm-core/inc
+        LOCAL_C_INCLUDES+= $(LOCAL_PATH)/mm-camera-interface
+      endif
+
       LOCAL_C_INCLUDES+= $(call project-path-for,qcom-display)/libgralloc
       LOCAL_C_INCLUDES+= $(call project-path-for,qcom-display)/libgenlock
       LOCAL_C_INCLUDES+= frameworks/native/include/media/hardware
@@ -129,6 +134,9 @@ ifeq ($(USE_DEVICE_SPECIFIC_CAMERA),true)
 
     endif # BUILD_TINY_ANDROID
 
+ifeq ($(V4L2_BASED_LIBCAM),true)
+include $(LOCAL_PATH)/mm-camera-interface/Android.mk
+endif
 endif # USE_CAMERA_STUB
 endif
 endif
