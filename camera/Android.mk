@@ -102,14 +102,8 @@ ifeq ($(USE_DEVICE_SPECIFIC_CAMERA),true)
       LOCAL_C_INCLUDES+= $(call project-path-for,qcom-display)/libgenlock
       LOCAL_C_INCLUDES+= frameworks/native/include/media/hardware
       LOCAL_C_INCLUDES+= $(call project-path-for,qcom-media)/libstagefrighthw
+      LOCAL_SHARED_LIBRARIES:= libutils libui libcamera_client liblog libcamera_metadata libcutils libmmjpeg
 
-
-      ifeq ($(V4L2_BASED_LIBCAM),true)
-        LOCAL_SHARED_LIBRARIES:= libutils libui libcamera_client libcamera_metadata liblog libcutils
-        LOCAL_SHARED_LIBRARIES += libmmcamera_interface2
-      else
-         LOCAL_SHARED_LIBRARIES:= libutils libui libcamera_client liblog libcamera_metadata libcutils libmmjpeg
-      endif
 
       LOCAL_SHARED_LIBRARIES+= libgenlock libbinder libhardware libnativewindow
       LOCAL_SHARED_LIBRARIES += android.hidl.token@1.0-utils android.hardware.graphics.bufferqueue@1.0 android.hardware.graphics.bufferqueue@2.0
