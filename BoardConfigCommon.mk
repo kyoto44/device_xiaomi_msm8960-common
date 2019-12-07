@@ -87,7 +87,7 @@ TARGET_PROCESS_SDK_VERSION_OVERRIDE := \
     /system/bin/cameraserver=22 \
     /system/bin/mediaserver=22 \
     /system/vendor/bin/mm-qcamera-daemon=22
-TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY := camera_parameters_xiaomi_msm8960
+#TARGET_SPECIFIC_CAMERA_PARAMETER_LIBRARY := camera_parameters_xiaomi_msm8960
 
 # Dexpreopt
 ifeq ($(HOST_OS),linux)
@@ -114,9 +114,9 @@ TARGET_EXFAT_DRIVER := sdfat
 TARGET_FS_CONFIG_GEN := $(PLATFORM_PATH)/config.fs
 
 # FM
-BOARD_HAVE_QCOM_FM              := true
-QCOM_FM_ENABLED                 := true
-TARGET_FM_LEGACY_PATCHLOADER    := true
+#BOARD_HAVE_QCOM_FM              := true
+#QCOM_FM_ENABLED                 := true
+#TARGET_FM_LEGACY_PATCHLOADER    := true
 
 # Fonts
 EXCLUDE_SERIF_FONTS          := true
