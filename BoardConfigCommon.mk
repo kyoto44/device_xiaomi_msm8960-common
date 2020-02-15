@@ -71,6 +71,7 @@ TARGET_USES_64_BIT_BINDER := true
 # Bionic
 TARGET_LD_SHIM_LIBS := \
     /vendor/bin/mpdecision|libshims_atomic.so
+TARGET_ALLOWS_INVALID_PTHREAD := true
 
 # Bluetooth
 BLUETOOTH_HCI_USE_MCT                       := true
@@ -191,6 +192,7 @@ VENDOR_SECURITY_PATCH := 2016-01-01
 
 # Sepolicy
 BOARD_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy
+SELINUX_IGNORE_NEVERALLOWS := true
 
 # Use mke2fs to create ext4 images
 TARGET_USES_MKE2FS := true
